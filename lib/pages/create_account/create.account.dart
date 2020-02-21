@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loginapp/pages/create_account/create.account.reg.dart';
+import 'package:loginapp/pages/home/home.page.dart';
 import 'package:loginapp/widgets/size.conf.dart';
 
 class CreateAccount extends StatefulWidget {
@@ -120,7 +121,15 @@ class _CreateAccountState extends State<CreateAccount> {
         actions: <Widget>[
           FlatButton(
             child: Text("OK"),
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Home(
+                  login: _create,
+                ),
+              ),
+              ModalRoute.withName('/home'),
+            ),
           ),
         ],
       ),

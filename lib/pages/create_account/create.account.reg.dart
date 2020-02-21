@@ -6,18 +6,19 @@ class CreateAcc {
   final String email;
   final String name;
   final String password;
-
-  CreateAcc({this.password, this.email, this.name});
+  final String id;
+  CreateAcc({this.password, this.email, this.name, this.id});
   factory CreateAcc.createPost(Map<String, dynamic> json) {
     return CreateAcc(
       name: json['user']['name'],
       email: json['user']['email'],
+      id: json['user']['_id'],
     );
   }
 
   static Future create(String email, String password, String name) async {
-    var _api= DotEnv().env['API'];
-    var url =  '$_api'+'/users';
+    var _api = DotEnv().env['API'];
+    var url = '$_api' + 'users';
     var data = {"email": email, "password": password, "name": name};
 
     try {
